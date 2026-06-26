@@ -9,6 +9,10 @@ on:
     
 jobs:
     unit-testing:
+        env:
+         MONGO_URI: ${{ vars.MONGO_URI }}
+         MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
+         MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         name: Unit Testing
         runs-on: ubuntu-latest
         steps:
