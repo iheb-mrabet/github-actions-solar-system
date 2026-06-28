@@ -13,8 +13,7 @@ jobs:
          MONGO_URI: ${{ vars.MONGO_URI }}
          MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
          MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
-         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        
         name: Unit Testing
         runs-on: ubuntu-latest
         steps:
@@ -47,7 +46,11 @@ jobs:
           with:
             name: Mocha-Test-Result
             path: test-results.xml
-    docker:         
+    docker: 
+      env:  
+         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      runs-on: ubuntu-latest
       steps:
       - name: Check out the repo
         uses: actions/checkout@v6
